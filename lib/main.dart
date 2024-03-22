@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:todo_list/todo_list_app.dart';
 
-void main() {
-  runApp(const MainApp());
+Future<void> connectToDatabase() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: 'https://acpscpoqbqwdbzzzyxmy.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFjcHNjcG9xYnF3ZGJ6enp5eG15Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTExMTU0NDMsImV4cCI6MjAyNjY5MTQ0M30.0JZwvBnp9ynAuf8oXLIeEGph2lPn_38jiQXv5sCzLvk',
+  );
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
+void main() {
+  connectToDatabase();
+  runApp(const ToDoList());
 }
