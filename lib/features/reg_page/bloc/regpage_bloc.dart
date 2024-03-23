@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:crypt/crypt.dart';
 import 'package:equatable/equatable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:todo_list/util/password_hashing.dart';
 
 part 'regpage_event.dart';
 part 'regpage_state.dart';
@@ -18,7 +20,8 @@ class RegpageBloc extends Bloc<RegpageEvent, RegpageState> {
         }
         if (event.password != event.repeatedPassword) throw Exception("Пароли не совпадают");
 
-        await Supabase.instance.client.auth.signUp(email: event.email, password: event.password);
+        await Supabase.instance.client.auth
+            .signUp(email: event.email, password: Crypt.sha256(event.password, salt: salt).toString());
         // await categoryRepository.defaultCategoryCreation();
         emit(RegistrationSuccess());
       } catch (e) {
