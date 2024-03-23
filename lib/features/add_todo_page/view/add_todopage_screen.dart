@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:todo_list/features/add_todo_page/bloc/add_todo_page_bloc.dart';
 import 'package:todo_list/repositories/requests/todo_repositories.dart';
@@ -17,8 +16,8 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _title = TextEditingController();
   final TextEditingController _description = TextEditingController();
-  DateTime _date = DateTime.now();
-  CalendarFormat _calendarFormat = CalendarFormat.month;
+  final DateTime _date = DateTime.now();
+  final CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
 
@@ -28,13 +27,13 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
       bloc: addTodoPageBloc,
       listener: (context, state) {
         if (state is AddTodoPageLoaded) {
-          Navigator.pushReplacementNamed(context, '/home_page_screen');
+          Navigator.pushNamedAndRemoveUntil(context, '/home_page_screen', (route) => false);
         }
       },
       child: Scaffold(
         appBar: AppBar(),
         body: SingleChildScrollView(
-          padding: EdgeInsets.only(bottom: 40),
+          padding: const EdgeInsets.only(bottom: 40),
           child: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               if (constraints.maxWidth > 600) {
@@ -59,7 +58,7 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
                   child: Column(
                     children: [
                       _buildForm(),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       _buildCalendar(),
                     ],
                   ),
@@ -114,15 +113,16 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
               return null;
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
 
           // Description
           TextFormField(
             controller: _description,
+            keyboardType: TextInputType.name,
             decoration: const InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10),
+              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10),
               floatingLabelBehavior: FloatingLabelBehavior.always,
               labelText: 'Description',
               border: OutlineInputBorder(),
@@ -147,7 +147,7 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
 
   Widget _buildCalendar() {
     return TableCalendar(
-      headerStyle: HeaderStyle(formatButtonVisible: false, titleCentered: true),
+      headerStyle: const HeaderStyle(formatButtonVisible: false, titleCentered: true),
       firstDay: DateTime.now(),
       rowHeight: 45,
       lastDay: DateTime.utc(2030, 3, 14),

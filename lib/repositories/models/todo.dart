@@ -11,5 +11,5 @@ class ToDo {
   final String title;
   final String description;
   final DateTime finishDate;
-  final bool isReady;
+  late final bool isReady;
 }
