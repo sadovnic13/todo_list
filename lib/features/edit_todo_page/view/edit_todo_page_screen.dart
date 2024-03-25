@@ -89,13 +89,13 @@ class _EditTodoPageState extends State<EditTodoPage> {
           bloc: editTodoPageBloc,
           builder: (context, state) {
             if (state is EditTodoPageLoading) {
-              Future.delayed(Duration(seconds: 5));
-              return ElevatedButton(
-                child: const Text(
+              Future.delayed(const Duration(seconds: 5));
+              return const ElevatedButton(
+                onPressed: null,
+                child: Text(
                   'Save',
                   style: TextStyle(fontSize: 20),
                 ),
-                onPressed: null,
               );
             }
             return ElevatedButton(
@@ -180,7 +180,7 @@ class _EditTodoPageState extends State<EditTodoPage> {
   Widget _buildCalendar() {
     return TableCalendar(
       headerStyle: const HeaderStyle(formatButtonVisible: false, titleCentered: true),
-      firstDay: record!.finishDate,
+      firstDay: DateTime.now().isBefore(record!.finishDate) ? DateTime.now() : record!.finishDate,
       rowHeight: 45,
       lastDay: DateTime.utc(2030, 3, 14),
       focusedDay: _focusedDay,

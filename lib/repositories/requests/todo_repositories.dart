@@ -15,22 +15,22 @@ class ToDoRepositories {
     return;
   }
 
-  Future<List<ToDo>> getTodoList() async {
-    final SupabaseClient client = Supabase.instance.client;
-    final response =
-        await client.from('tasks').select('*').order('isReady', ascending: true).order('created_at', ascending: false);
+  // Future<List<ToDo>> getTodoList() async {
+  //   final SupabaseClient client = Supabase.instance.client;
+  //   final response =
+  //       await client.from('tasks').select('*').order('isReady', ascending: true).order('created_at', ascending: false);
 
-    final List<ToDo> todoList = response
-        .map((e) => ToDo(
-              id: e['id'],
-              title: e['title'],
-              description: e['description'],
-              finishDate: DateTime.parse(e['finishDate']),
-              isReady: e['isReady'],
-            ))
-        .toList();
-    return todoList;
-  }
+  //   final List<ToDo> todoList = response
+  //       .map((e) => ToDo(
+  //             id: e['id'],
+  //             title: e['title'],
+  //             description: e['description'],
+  //             finishDate: DateTime.parse(e['finishDate']),
+  //             isReady: e['isReady'],
+  //           ))
+  //       .toList();
+  //   return todoList;
+  // }
 
   Future<void> markTodo(int id, bool isReady) async {
     final SupabaseClient client = Supabase.instance.client;
@@ -53,5 +53,42 @@ class ToDoRepositories {
     await client.from('tasks').delete().eq('id', id);
 
     return;
+  }
+
+  Future<List<ToDo>> filteringTodoList(int parameter) async {
+    final SupabaseClient client = Supabase.instance.client;
+    List<Map<String, dynamic>>? response;
+    switch (parameter) {
+      case 1:
+        response = await client
+            .from('tasks')
+            .select('*')
+            .order('isReady', ascending: true)
+            .order('finishDate', ascending: true);
+        break;
+      case 2:
+        response = await client
+            .from('tasks')
+            .select('*')
+            .order('finishDate', ascending: true)
+            .order('isReady', ascending: true)
+            .order('created_at', ascending: false);
+        break;
+      case 3:
+        response = await client.from('tasks').select('*').order('created_at', ascending: false);
+        break;
+    }
+
+    final List<ToDo> todoList = response!
+        .map((e) => ToDo(
+              id: e['id'],
+              title: e['title'],
+              description: e['description'],
+              finishDate: DateTime.parse(e['finishDate']),
+              isReady: e['isReady'],
+            ))
+        .toList();
+
+    return todoList;
   }
 }

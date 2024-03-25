@@ -8,20 +8,27 @@ part 'homepage_state.dart';
 
 class HomepageBloc extends Bloc<HomepageEvent, HomepageState> {
   HomepageBloc(this.toDoRepositories) : super(HomepageInitial()) {
-    on<LoadTodoList>((event, emit) async {
-      try {
-        emit(HomepageLoading());
-        final todoList = await toDoRepositories.getTodoList();
-        emit(HomepageLoaded(todoList: todoList));
-      } catch (e) {
-        emit(HomepageFailure(exeption: e));
-      }
-    });
+    // on<LoadTodoList>((event, emit) async {
+    //   try {
+    //     emit(HomepageLoading());
+    //     final todoList = await toDoRepositories.getTodoList();
+    //     emit(HomepageLoaded(todoList: todoList));
+    //   } catch (e) {
+    //     emit(HomepageFailure(exeption: e));
+    //   }
+    // });
 
     on<DeleteToDoRecord>((event, emit) async {
       emit(HomepageLoading());
       await toDoRepositories.deleteTodo(event.id);
-      final todoList = await toDoRepositories.getTodoList();
+      final todoList = await toDoRepositories.filteringTodoList(1);
+      emit(HomepageLoaded(todoList: todoList));
+    });
+
+    on<FilteringTodoList>((event, emit) async {
+      emit(HomepageLoading());
+      final todoList = await toDoRepositories.filteringTodoList(event.parameter);
+
       emit(HomepageLoaded(todoList: todoList));
     });
   }

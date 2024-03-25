@@ -5,10 +5,16 @@ abstract class HomepageEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadTodoList extends HomepageEvent {}
+// class LoadTodoList extends HomepageEvent {}
 
 class DeleteToDoRecord extends HomepageEvent {
   DeleteToDoRecord({required this.id});
 
   final int id;
+}
+
+class FilteringTodoList extends HomepageEvent {
+  FilteringTodoList({required this.parameter});
+
+  final int parameter;
 }

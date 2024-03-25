@@ -59,8 +59,8 @@ class _ToDoRecordState extends State<ToDoRecord> {
             return [
               PopupMenuItem(
                 child: ListTile(
-                  leading: Icon(Icons.edit),
-                  title: Text('Edit'),
+                  leading: const Icon(Icons.edit),
+                  title: const Text('Edit'),
                   onTap: () {
                     Navigator.pushReplacementNamed(context, '/edit_todo_page_screen', arguments: widget.todo);
                   },
@@ -68,8 +68,8 @@ class _ToDoRecordState extends State<ToDoRecord> {
               ),
               PopupMenuItem(
                 child: ListTile(
-                  leading: Icon(Icons.delete),
-                  title: Text('Delete'),
+                  leading: const Icon(Icons.delete),
+                  title: const Text('Delete'),
                   onTap: () {
                     Navigator.pop(context);
                     widget.homepageBloc.add(DeleteToDoRecord(id: widget.todo.id));
