@@ -17,6 +17,13 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState> {
         emit(HomepageFailure(exeption: e));
       }
     });
+
+    on<DeleteToDoRecord>((event, emit) async {
+      emit(HomepageLoading());
+      await toDoRepositories.deleteTodo(event.id);
+      final todoList = await toDoRepositories.getTodoList();
+      emit(HomepageLoaded(todoList: todoList));
+    });
   }
 
   final ToDoRepositories toDoRepositories;

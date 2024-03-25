@@ -38,4 +38,11 @@ class ToDoRepositories {
 
     return;
   }
+
+  Future<void> deleteTodo(int id) async {
+    final SupabaseClient client = Supabase.instance.client;
+    await client.from('tasks').delete().eq('id', id);
+
+    return;
+  }
 }

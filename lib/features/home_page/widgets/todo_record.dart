@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:todo_list/features/home_page/bloc/homepage_bloc.dart';
 import 'package:todo_list/repositories/requests/todo_repositories.dart';
 
 import '../../../repositories/models/models.dart';
 
 class ToDoRecord extends StatefulWidget {
-  const ToDoRecord({super.key, required this.todo});
+  const ToDoRecord({super.key, required this.todo, required this.homepageBloc});
   final ToDo todo;
+  final HomepageBloc homepageBloc;
 
   @override
   State<ToDoRecord> createState() => _ToDoRecordState();
@@ -61,10 +63,14 @@ class _ToDoRecordState extends State<ToDoRecord> {
                   title: Text('Edit'),
                 ),
               ),
-              const PopupMenuItem(
+              PopupMenuItem(
                 child: ListTile(
                   leading: Icon(Icons.delete),
                   title: Text('Delete'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    widget.homepageBloc.add(DeleteToDoRecord(id: widget.todo.id));
+                  },
                 ),
               ),
             ];

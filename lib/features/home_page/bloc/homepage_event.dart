@@ -6,3 +6,9 @@ abstract class HomepageEvent extends Equatable {
 }
 
 class LoadTodoList extends HomepageEvent {}
+
+class DeleteToDoRecord extends HomepageEvent {
+  DeleteToDoRecord({required this.id});
+
+  final int id;
+}

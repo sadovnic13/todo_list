@@ -12,10 +12,10 @@ class HomepageScreen extends StatefulWidget {
 }
 
 class _HomepageScreenState extends State<HomepageScreen> {
-  final HomepageBloc _homepageBloc = HomepageBloc(ToDoRepositories());
+  final HomepageBloc homepageBloc = HomepageBloc(ToDoRepositories());
   @override
   Widget build(BuildContext context) {
-    _homepageBloc.add(LoadTodoList());
+    homepageBloc.add(LoadTodoList());
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -24,18 +24,21 @@ class _HomepageScreenState extends State<HomepageScreen> {
           child: const Icon(Icons.add)),
       appBar: AppBar(title: const Text('Your ToDo list')),
       body: BlocBuilder<HomepageBloc, HomepageState>(
-        bloc: _homepageBloc,
+        bloc: homepageBloc,
         builder: (context, state) {
           if (state is HomepageLoaded) {
             return RefreshIndicator(
               onRefresh: () async {
-                _homepageBloc.add(LoadTodoList());
+                homepageBloc.add(LoadTodoList());
               },
               child: ListView.builder(
                 padding: const EdgeInsets.only(left: 10, right: 10, bottom: 100),
                 itemCount: state.todoList.length,
                 itemBuilder: (context, index) {
-                  return ToDoRecord(todo: state.todoList[index]);
+                  return ToDoRecord(
+                    todo: state.todoList[index],
+                    homepageBloc: homepageBloc,
+                  );
                 },
               ),
             );
