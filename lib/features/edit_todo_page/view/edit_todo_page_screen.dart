@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:todo_list/features/add_todo_page/bloc/add_todo_page_bloc.dart';
+import 'package:todo_list/features/edit_todo_page/bloc/edit_todo_page_bloc.dart';
+import 'package:todo_list/repositories/models/models.dart';
 import 'package:todo_list/repositories/requests/todo_repositories.dart';
 
-import '../../../repositories/models/models.dart';
-
-class AddTodoPageScreen extends StatefulWidget {
-  const AddTodoPageScreen({super.key});
+class EditTodoPage extends StatefulWidget {
+  const EditTodoPage({super.key});
 
   @override
-  State<AddTodoPageScreen> createState() => _AddTodoPageScreenState();
+  State<EditTodoPage> createState() => _EditTodoPageState();
 }
 
-class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
-  final AddTodoPageBloc addTodoPageBloc = AddTodoPageBloc(ToDoRepositories());
+class _EditTodoPageState extends State<EditTodoPage> {
+  final EditTodoPageBloc editTodoPageBloc = EditTodoPageBloc(ToDoRepositories());
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _title = TextEditingController();
   final TextEditingController _description = TextEditingController();
@@ -23,12 +22,27 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
 
+  ToDo? record;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final args = ModalRoute.of(context)?.settings.arguments;
+    assert(args != null, "Route args error");
+    record = args as ToDo;
+
+    _title.text = record?.title ?? '';
+    _description.text = record?.description ?? '';
+    _focusedDay = record!.finishDate;
+    _selectedDay = record!.finishDate;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AddTodoPageBloc, AddTodoPageState>(
-      bloc: addTodoPageBloc,
+    return BlocListener<EditTodoPageBloc, EditTodoPageState>(
+      bloc: editTodoPageBloc,
       listener: (context, state) {
-        if (state is AddTodoPageLoaded) {
+        if (state is EditTodoPageLoaded) {
           Navigator.pushNamedAndRemoveUntil(context, '/home_page_screen', (route) => false);
         }
       },
@@ -71,19 +85,35 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
         ),
 
         // Submit
-        floatingActionButton: ElevatedButton(
-          child: const Text(
-            'Save',
-            style: TextStyle(fontSize: 20),
-          ),
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              addTodoPageBloc.add(AddTodo(
-                title: _title.text,
-                description: _description.text,
-                finishDate: _selectedDay ?? _date,
-              ));
+        floatingActionButton: BlocBuilder<EditTodoPageBloc, EditTodoPageState>(
+          bloc: editTodoPageBloc,
+          builder: (context, state) {
+            if (state is EditTodoPageLoading) {
+              Future.delayed(Duration(seconds: 5));
+              return ElevatedButton(
+                child: const Text(
+                  'Save',
+                  style: TextStyle(fontSize: 20),
+                ),
+                onPressed: null,
+              );
             }
+            return ElevatedButton(
+              child: const Text(
+                'Save',
+                style: TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  editTodoPageBloc.add(EditTodo(
+                    id: record!.id,
+                    title: _title.text,
+                    description: _description.text,
+                    finishDate: _selectedDay ?? _date,
+                  ));
+                }
+              },
+            );
           },
         ),
       ),
@@ -150,7 +180,7 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
   Widget _buildCalendar() {
     return TableCalendar(
       headerStyle: const HeaderStyle(formatButtonVisible: false, titleCentered: true),
-      firstDay: DateTime.now(),
+      firstDay: record!.finishDate,
       rowHeight: 45,
       lastDay: DateTime.utc(2030, 3, 14),
       focusedDay: _focusedDay,

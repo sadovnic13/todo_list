@@ -13,7 +13,7 @@ class AddTodoPageBloc extends Bloc<AddTodoPageEvent, AddTodoPageState> {
         toDoRepositories.setTodo(event.title, event.description, event.finishDate);
         emit(AddTodoPageLoaded());
       } catch (e) {
-        emit(AddTodoPageFailure());
+        emit(AddTodoPageFailure(exeption: e));
       }
     });
   }

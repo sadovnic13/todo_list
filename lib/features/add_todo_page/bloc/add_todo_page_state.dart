@@ -11,4 +11,8 @@ final class AddTodoPageLoading extends AddTodoPageState {}
 
 final class AddTodoPageLoaded extends AddTodoPageState {}
 
-final class AddTodoPageFailure extends AddTodoPageState {}
+final class AddTodoPageFailure extends AddTodoPageState {
+  AddTodoPageFailure({required this.exeption});
+
+  final Object? exeption;
+}

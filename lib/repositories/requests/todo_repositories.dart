@@ -32,9 +32,18 @@ class ToDoRepositories {
     return todoList;
   }
 
-  Future<void> updateTodo(int id, bool isReady) async {
+  Future<void> markTodo(int id, bool isReady) async {
     final SupabaseClient client = Supabase.instance.client;
     await client.from('tasks').update({'isReady': isReady}).eq('id', id);
+
+    return;
+  }
+
+  Future<void> updateTodo(int id, String title, String description, DateTime finishDate) async {
+    final SupabaseClient client = Supabase.instance.client;
+    await client
+        .from('tasks')
+        .update({'title': title, 'description': description, 'finishDate': finishDate.toIso8601String()}).eq('id', id);
 
     return;
   }

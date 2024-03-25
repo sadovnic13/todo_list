@@ -32,7 +32,7 @@ class _ToDoRecordState extends State<ToDoRecord> {
         leading: IconButton(
           icon: isReady ? const Icon(Icons.check_box) : const Icon(Icons.check_box_outline_blank),
           onPressed: () async {
-            await toDoRepositories.updateTodo(widget.todo.id, !isReady);
+            await toDoRepositories.markTodo(widget.todo.id, !isReady);
             setState(() {
               isReady = !isReady;
             });
@@ -57,10 +57,13 @@ class _ToDoRecordState extends State<ToDoRecord> {
           onSelected: (value) {},
           itemBuilder: (context) {
             return [
-              const PopupMenuItem(
+              PopupMenuItem(
                 child: ListTile(
                   leading: Icon(Icons.edit),
                   title: Text('Edit'),
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, '/edit_todo_page_screen', arguments: widget.todo);
+                  },
                 ),
               ),
               PopupMenuItem(
