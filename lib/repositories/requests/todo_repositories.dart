@@ -55,7 +55,7 @@ class ToDoRepositories {
     return;
   }
 
-  Future<List<ToDo>> filteringTodoList(int parameter) async {
+  Future<List<ToDo>> filteringTodoList(int parameter, bool hideDoneTasks) async {
     final SupabaseClient client = Supabase.instance.client;
     List<Map<String, dynamic>>? response;
     switch (parameter) {
@@ -80,6 +80,7 @@ class ToDoRepositories {
     }
 
     final List<ToDo> todoList = response!
+        .where((e) => !hideDoneTasks || e['isReady'] == false)
         .map((e) => ToDo(
               id: e['id'],
               title: e['title'],

@@ -21,13 +21,13 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState> {
     on<DeleteToDoRecord>((event, emit) async {
       emit(HomepageLoading());
       await toDoRepositories.deleteTodo(event.id);
-      final todoList = await toDoRepositories.filteringTodoList(1);
+      final todoList = await toDoRepositories.filteringTodoList(event.parameter, event.hideDoneTasks);
       emit(HomepageLoaded(todoList: todoList));
     });
 
     on<FilteringTodoList>((event, emit) async {
       emit(HomepageLoading());
-      final todoList = await toDoRepositories.filteringTodoList(event.parameter);
+      final todoList = await toDoRepositories.filteringTodoList(event.parameter, event.hideDoneTasks);
 
       emit(HomepageLoaded(todoList: todoList));
     });

@@ -89,7 +89,6 @@ class _EditTodoPageState extends State<EditTodoPage> {
           bloc: editTodoPageBloc,
           builder: (context, state) {
             if (state is EditTodoPageLoading) {
-              Future.delayed(const Duration(seconds: 5));
               return const ElevatedButton(
                 onPressed: null,
                 child: Text(

@@ -14,6 +14,7 @@ class HomepageScreen extends StatefulWidget {
 
 class _HomepageScreenState extends State<HomepageScreen> {
   int parameter = 1;
+  bool hideDoneTasks = false;
   final HomepageBloc homepageBloc = HomepageBloc(ToDoRepositories());
 
   void updateParameter(int newParameter) {
@@ -22,9 +23,15 @@ class _HomepageScreenState extends State<HomepageScreen> {
     });
   }
 
+  void updateHideCompletedTasks(bool newValue) {
+    setState(() {
+      hideDoneTasks = newValue;
+    });
+  }
+
   @override
   void didChangeDependencies() {
-    homepageBloc.add(FilteringTodoList(parameter: parameter));
+    homepageBloc.add(FilteringTodoList(parameter: parameter, hideDoneTasks: hideDoneTasks));
 
     super.didChangeDependencies();
   }
@@ -43,7 +50,9 @@ class _HomepageScreenState extends State<HomepageScreen> {
           ActionFilter(
             homepageBloc: homepageBloc,
             parameter: parameter,
+            hideDoneTasks: hideDoneTasks,
             onParameterChanged: updateParameter,
+            onHideDoneTasksChanged: updateHideCompletedTasks,
           )
         ],
       ),
@@ -53,7 +62,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
           if (state is HomepageLoaded) {
             return RefreshIndicator(
               onRefresh: () async {
-                homepageBloc.add(FilteringTodoList(parameter: parameter));
+                homepageBloc.add(FilteringTodoList(parameter: parameter, hideDoneTasks: hideDoneTasks));
               },
               child: state.todoList.isEmpty
                   ? Center(
@@ -64,6 +73,8 @@ class _HomepageScreenState extends State<HomepageScreen> {
                       itemCount: state.todoList.length,
                       itemBuilder: (context, index) {
                         return ToDoRecord(
+                          parameter: parameter,
+                          hideDoneTasks: hideDoneTasks,
                           todo: state.todoList[index],
                           homepageBloc: homepageBloc,
                         );

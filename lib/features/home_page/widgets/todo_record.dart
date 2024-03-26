@@ -6,8 +6,15 @@ import 'package:todo_list/repositories/requests/todo_repositories.dart';
 import '../../../repositories/models/models.dart';
 
 class ToDoRecord extends StatefulWidget {
-  const ToDoRecord({super.key, required this.todo, required this.homepageBloc});
+  const ToDoRecord(
+      {super.key,
+      required this.todo,
+      required this.homepageBloc,
+      required this.parameter,
+      required this.hideDoneTasks});
   final ToDo todo;
+  final int parameter;
+  final bool hideDoneTasks;
   final HomepageBloc homepageBloc;
 
   @override
@@ -47,7 +54,7 @@ class _ToDoRecordState extends State<ToDoRecord> {
           children: [
             Text(
               widget.todo.description,
-              maxLines: 3,
+              maxLines: 15,
               overflow: TextOverflow.ellipsis,
             ),
             Text('Ready date: ${DateFormat('dd.MM.yyyy').format(widget.todo.finishDate)}')
@@ -72,7 +79,12 @@ class _ToDoRecordState extends State<ToDoRecord> {
                   title: const Text('Delete'),
                   onTap: () {
                     Navigator.pop(context);
-                    widget.homepageBloc.add(DeleteToDoRecord(id: widget.todo.id));
+                    widget.homepageBloc.add(DeleteToDoRecord(
+                      id: widget.todo.id,
+                      parameter: widget.parameter,
+                      hideDoneTasks: widget.hideDoneTasks,
+                    ));
+                    setState(() {});
                   },
                 ),
               ),
