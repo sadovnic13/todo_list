@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_list/features/home_page/bloc/homepage_bloc.dart';
-import 'package:todo_list/features/home_page/widgets/action_filter.dart';
-import 'package:todo_list/features/home_page/widgets/todo_record.dart';
-import 'package:todo_list/repositories/requests/todo_repositories.dart';
+
+import '../../../repositories/repositories.dart';
+import '../bloc/homepage_bloc.dart';
+import '../home_page.dart';
 
 class HomepageScreen extends StatefulWidget {
   const HomepageScreen({super.key});
@@ -65,7 +65,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 homepageBloc.add(FilteringTodoList(parameter: parameter, hideDoneTasks: hideDoneTasks));
               },
               child: state.todoList.isEmpty
-                  ? Center(
+                  ? const Center(
                       child: Text("You don't have plans"),
                     )
                   : ListView.builder(

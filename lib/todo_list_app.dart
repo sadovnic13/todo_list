@@ -17,7 +17,6 @@ class ToDoList extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3F37C9)),
         useMaterial3: true,
       ),
-      // initialRoute: '/home_page_screen',
       initialRoute: '/log_page_screen',
     );
   }

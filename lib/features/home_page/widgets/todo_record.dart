@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_list/features/home_page/bloc/homepage_bloc.dart';
-import 'package:todo_list/repositories/requests/todo_repositories.dart';
 
-import '../../../repositories/models/models.dart';
+import '../../../repositories/repositories.dart';
 
 class ToDoRecord extends StatefulWidget {
   const ToDoRecord(

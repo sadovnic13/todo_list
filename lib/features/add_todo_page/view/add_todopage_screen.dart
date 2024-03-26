@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:todo_list/features/add_todo_page/bloc/add_todo_page_bloc.dart';
-import 'package:todo_list/repositories/requests/todo_repositories.dart';
 
+import '../../../repositories/repositories.dart';
+import '../bloc/add_todo_page_bloc.dart';
 
 class AddTodoPageScreen extends StatefulWidget {
   const AddTodoPageScreen({super.key});
@@ -102,11 +102,6 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
               labelText: 'Title',
               border: OutlineInputBorder(),
             ),
-            // onChanged: (value) {
-            //   setState(() {
-            //     _title = value;
-            //   });
-            // },
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter text';
@@ -129,11 +124,6 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
               border: OutlineInputBorder(),
             ),
             maxLines: 3,
-            // onChanged: (value) {
-            //   setState(() {
-            //     _description = value;
-            //   });
-            // },
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter text';

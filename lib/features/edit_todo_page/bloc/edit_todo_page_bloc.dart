@@ -1,6 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:todo_list/repositories/requests/todo_repositories.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../repositories/repositories.dart';
 
 part 'edit_todo_page_event.dart';
 part 'edit_todo_page_state.dart';

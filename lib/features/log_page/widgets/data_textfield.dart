@@ -20,13 +20,8 @@ class DataTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         obscureText: obscureText,
-        // cursorColor: mainTextColor,
-        // style: theme.textTheme.titleMedium,
         decoration: InputDecoration(
-          // enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: mainTextColor)),
-          // focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: mainTextColor)),
           label: Text(hintText),
-          // labelStyle: theme.textTheme.titleSmall!.copyWith(color: secondTextColor),
         ),
       ),
     );

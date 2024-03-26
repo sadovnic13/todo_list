@@ -70,9 +70,7 @@ class _InputFormState extends State<InputForm> {
                   child: const Text(
                     'Войти',
                     style: TextStyle(
-                      // color: backgroundColor,
                       fontWeight: FontWeight.bold,
-                      // fontSize: fontSize20,
                     ),
                   ),
                   onPressed: () {

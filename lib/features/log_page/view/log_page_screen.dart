@@ -17,7 +17,6 @@ class _LogPageScreenState extends State<LogPageScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      // backgroundColor: backgroundColor,
       body: BlocListener<LogpageBloc, LogpageState>(
         bloc: logpageBloc,
         listener: (context, state) {
@@ -48,7 +47,6 @@ class _LogPageScreenState extends State<LogPageScreen> {
                   margin: const EdgeInsets.only(top: 50, bottom: 10),
                   padding: const EdgeInsets.all(35),
                   decoration: BoxDecoration(
-                    // color: backgroundColor,
                     borderRadius: BorderRadius.circular(75),
                   ),
                   child: const Icon(
@@ -66,7 +64,6 @@ class _LogPageScreenState extends State<LogPageScreen> {
                     children: [
                       const Text(
                         'Еще нет аккаунта?',
-                        // style: TextStyle(color: secondTextColor),
                       ),
                       const SizedBox(width: 4),
                       GestureDetector(

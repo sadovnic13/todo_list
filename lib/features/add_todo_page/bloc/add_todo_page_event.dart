@@ -1,9 +1,6 @@
 part of 'add_todo_page_bloc.dart';
 
-abstract class AddTodoPageEvent extends Equatable {
-  @override
-  List<Object> get props => [];
-}
+abstract class AddTodoPageEvent extends Equatable {}
 
 class AddTodo extends AddTodoPageEvent {
   AddTodo({
@@ -15,4 +12,7 @@ class AddTodo extends AddTodoPageEvent {
   final String title;
   final String description;
   final DateTime finishDate;
+
+  @override
+  List<Object?> get props => [title, description, finishDate];
 }

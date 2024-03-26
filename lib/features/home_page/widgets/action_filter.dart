@@ -22,7 +22,7 @@ class ActionFilter extends StatefulWidget {
 }
 
 class _ActionFilterState extends State<ActionFilter> {
-  Icon icon = Icon(Icons.filter_alt_outlined);
+  Icon icon = const Icon(Icons.filter_alt_outlined);
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
@@ -79,7 +79,7 @@ class _ActionFilterState extends State<ActionFilter> {
               widget.homepageBloc.add(FilteringTodoList(parameter: 3, hideDoneTasks: widget.hideDoneTasks));
             },
           ),
-          PopupMenuDivider(),
+          const PopupMenuDivider(),
 
           //hide tasks checker
           PopupMenuItem(
@@ -92,7 +92,7 @@ class _ActionFilterState extends State<ActionFilter> {
                   widget.homepageBloc.add(FilteringTodoList(parameter: widget.parameter, hideDoneTasks: value));
                 },
               ),
-              title: Text(
+              title: const Text(
                 'Hide done tasks',
                 style: TextStyle(
                   fontWeight: FontWeight.w400,

@@ -70,7 +70,6 @@ class _RegPageScreenState extends State<RegPageScreen> {
                     children: [
                       const Text(
                         'Уже есть аккаунт?',
-                        // style: TextStyle(color: secondTextColor),
                       ),
                       const SizedBox(width: 4),
                       GestureDetector(

@@ -1,11 +1,6 @@
 part of 'homepage_bloc.dart';
 
-abstract class HomepageEvent extends Equatable {
-  @override
-  List<Object> get props => [];
-}
-
-// class LoadTodoList extends HomepageEvent {}
+abstract class HomepageEvent extends Equatable {}
 
 class DeleteToDoRecord extends HomepageEvent {
   final int id;
@@ -13,6 +8,9 @@ class DeleteToDoRecord extends HomepageEvent {
   final bool hideDoneTasks;
 
   DeleteToDoRecord({required this.id, required this.parameter, required this.hideDoneTasks});
+
+  @override
+  List<Object?> get props => [id, parameter, hideDoneTasks];
 }
 
 class FilteringTodoList extends HomepageEvent {
@@ -20,4 +18,7 @@ class FilteringTodoList extends HomepageEvent {
   final bool hideDoneTasks;
 
   FilteringTodoList({required this.parameter, required this.hideDoneTasks});
+
+  @override
+  List<Object?> get props => [parameter, hideDoneTasks];
 }

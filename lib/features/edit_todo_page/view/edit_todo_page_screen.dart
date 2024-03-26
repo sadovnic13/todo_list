@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:todo_list/features/edit_todo_page/bloc/edit_todo_page_bloc.dart';
-import 'package:todo_list/repositories/models/models.dart';
-import 'package:todo_list/repositories/requests/todo_repositories.dart';
+
+import '../../../repositories/repositories.dart';
+import '../bloc/edit_todo_page_bloc.dart';
 
 class EditTodoPage extends StatefulWidget {
   const EditTodoPage({super.key});
@@ -132,11 +132,6 @@ class _EditTodoPageState extends State<EditTodoPage> {
               labelText: 'Title',
               border: OutlineInputBorder(),
             ),
-            // onChanged: (value) {
-            //   setState(() {
-            //     _title = value;
-            //   });
-            // },
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter text';
@@ -159,11 +154,6 @@ class _EditTodoPageState extends State<EditTodoPage> {
               border: OutlineInputBorder(),
             ),
             maxLines: 3,
-            // onChanged: (value) {
-            //   setState(() {
-            //     _description = value;
-            //   });
-            // },
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter text';

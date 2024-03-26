@@ -2,7 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:crypt/crypt.dart';
 import 'package:equatable/equatable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:todo_list/util/password_hashing.dart';
+
+import '../../../util/util.dart';
 
 part 'regpage_event.dart';
 part 'regpage_state.dart';
@@ -22,13 +23,10 @@ class RegpageBloc extends Bloc<RegpageEvent, RegpageState> {
 
         await Supabase.instance.client.auth
             .signUp(email: event.email, password: Crypt.sha256(event.password, salt: salt).toString());
-        // await categoryRepository.defaultCategoryCreation();
         emit(RegistrationSuccess());
       } catch (e) {
         emit(RegistrationFailure(exception: e));
       }
     });
   }
-
-  // final CategoryRepository categoryRepository;
 }

@@ -1,18 +1,27 @@
 part of 'edit_todo_page_bloc.dart';
 
-abstract class EditTodoPageState extends Equatable {
+abstract class EditTodoPageState extends Equatable {}
+
+final class EditTodoPageInitial extends EditTodoPageState {
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
-final class EditTodoPageInitial extends EditTodoPageState {}
+final class EditTodoPageLoading extends EditTodoPageState {
+  @override
+  List<Object?> get props => [];
+}
 
-final class EditTodoPageLoading extends EditTodoPageState {}
-
-final class EditTodoPageLoaded extends EditTodoPageState {}
+final class EditTodoPageLoaded extends EditTodoPageState {
+  @override
+  List<Object?> get props => [];
+}
 
 final class EditTodoPageFailure extends EditTodoPageState {
   EditTodoPageFailure({required this.exeption});
 
   final Object? exeption;
+
+  @override
+  List<Object?> get props => [exeption];
 }
