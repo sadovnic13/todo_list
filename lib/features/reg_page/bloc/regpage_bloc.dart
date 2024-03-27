@@ -8,6 +8,7 @@ import '../../../util/util.dart';
 part 'regpage_event.dart';
 part 'regpage_state.dart';
 
+///Bloc for controlling the status of the registration screen
 class RegpageBloc extends Bloc<RegpageEvent, RegpageState> {
   RegpageBloc() : super(RegistrationInitial()) {
     on<SignUpUser>((event, emit) async {

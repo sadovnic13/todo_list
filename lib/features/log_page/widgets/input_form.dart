@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/logpage_bloc.dart';
 import '../log_page.dart';
 
+///Data entry form
+///[logpageBloc] - screen bloc
 class InputForm extends StatefulWidget {
   final LogpageBloc logpageBloc;
   const InputForm({super.key, required this.logpageBloc});
@@ -13,6 +15,7 @@ class InputForm extends StatefulWidget {
 }
 
 class _InputFormState extends State<InputForm> {
+  //controllers
   final TextEditingController _loginController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -47,7 +50,6 @@ class _InputFormState extends State<InputForm> {
           const SizedBox(height: 25),
 
           // sign in button
-
           SizedBox(
             height: 40,
             child: BlocBuilder<LogpageBloc, LogpageState>(
@@ -81,8 +83,6 @@ class _InputFormState extends State<InputForm> {
               },
             ),
           ),
-
-          // not a member? register now
         ],
       ),
     );

@@ -8,6 +8,7 @@ import '../../../util/util.dart';
 part 'logpage_event.dart';
 part 'logpage_state.dart';
 
+///Block for controlling the status of the authorization screen
 class LogpageBloc extends Bloc<LogpageEvent, LogpageState> {
   LogpageBloc() : super(LoginInitial()) {
     on<SignInUser>((event, emit) async {

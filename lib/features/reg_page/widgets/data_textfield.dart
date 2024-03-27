@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+///data entry widget
+///[controller] - controller
+///[hintText] - hintText
+///[obscureText] - obscureText
 class DataTextField extends StatelessWidget {
   final controller;
   final String hintText;

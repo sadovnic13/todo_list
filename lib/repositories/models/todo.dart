@@ -1,3 +1,9 @@
+///Record instance model
+////[id] - task id
+///[title] - task title
+///[description] - task description
+///[finishDate] - task completion date
+///[isReady] - task readiness
 class ToDo {
   ToDo({
     required this.id,

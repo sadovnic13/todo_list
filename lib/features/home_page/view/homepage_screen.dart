@@ -5,6 +5,7 @@ import '../../../repositories/repositories.dart';
 import '../bloc/homepage_bloc.dart';
 import '../home_page.dart';
 
+/// Home page
 class HomepageScreen extends StatefulWidget {
   const HomepageScreen({super.key});
 
@@ -12,17 +13,22 @@ class HomepageScreen extends StatefulWidget {
   State<HomepageScreen> createState() => _HomepageScreenState();
 }
 
+///Basic state of the main screen
 class _HomepageScreenState extends State<HomepageScreen> {
+  //filter parameter variables
   int parameter = 1;
   bool hideDoneTasks = false;
+
   final HomepageBloc homepageBloc = HomepageBloc(ToDoRepositories());
 
+  ///Method of changing the filter parameter [newParametr] - sorting type parameter
   void updateParameter(int newParameter) {
     setState(() {
       parameter = newParameter;
     });
   }
 
+  ///method of changing the filter parameter [newValue] - parameter for displaying completed tasks
   void updateHideCompletedTasks(bool newValue) {
     setState(() {
       hideDoneTasks = newValue;
@@ -32,7 +38,6 @@ class _HomepageScreenState extends State<HomepageScreen> {
   @override
   void didChangeDependencies() {
     homepageBloc.add(FilteringTodoList(parameter: parameter, hideDoneTasks: hideDoneTasks));
-
     super.didChangeDependencies();
   }
 
@@ -59,6 +64,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
       body: BlocBuilder<HomepageBloc, HomepageState>(
         bloc: homepageBloc,
         builder: (context, state) {
+          //case of loading all page data
           if (state is HomepageLoaded) {
             return RefreshIndicator(
               onRefresh: () async {
@@ -87,6 +93,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
             debugPrint('Error');
           }
 
+          //case of loading data
           return const Center(child: CircularProgressIndicator());
         },
       ),

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/logpage_bloc.dart';
 import '../widgets/widgets.dart';
 
+///Authorization screen
 class LogPageScreen extends StatefulWidget {
   const LogPageScreen({super.key});
 
@@ -15,11 +16,11 @@ class _LogPageScreenState extends State<LogPageScreen> {
   final LogpageBloc logpageBloc = LogpageBloc();
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Scaffold(
       body: BlocListener<LogpageBloc, LogpageState>(
         bloc: logpageBloc,
         listener: (context, state) {
+          //successful authorization case
           if (state is LoginSuccess) {
             Navigator.pushNamedAndRemoveUntil(
               context,
@@ -27,6 +28,7 @@ class _LogPageScreenState extends State<LogPageScreen> {
               (route) => false,
             );
           }
+          //case of authorization problems
           if (state is LoginFailure) {
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
@@ -41,6 +43,7 @@ class _LogPageScreenState extends State<LogPageScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                //body icon
                 Container(
                   height: 150,
                   width: 150,
@@ -54,9 +57,11 @@ class _LogPageScreenState extends State<LogPageScreen> {
                     size: 100,
                   ),
                 ),
+                //data entry form
                 InputForm(
                   logpageBloc: logpageBloc,
                 ),
+                //registration offer
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(

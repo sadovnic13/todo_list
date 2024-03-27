@@ -6,6 +6,7 @@ import '../../../repositories/repositories.dart';
 part 'homepage_event.dart';
 part 'homepage_state.dart';
 
+/// Block allowing to add and respond to requests, on the main screen
 class HomepageBloc extends Bloc<HomepageEvent, HomepageState> {
   HomepageBloc(this.toDoRepositories) : super(HomepageInitial()) {
     on<DeleteToDoRecord>((event, emit) async {

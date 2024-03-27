@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo_list/todo_list_app.dart';
 
+///Connection to database
 Future<void> connectToDatabase() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(

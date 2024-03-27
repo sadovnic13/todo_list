@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../repositories.dart';
 
 class ToDoRepositories {
+  ///Request to add a task
   Future<void> setTodo(String title, String description, DateTime finishDate) async {
     final SupabaseClient client = Supabase.instance.client;
     await client.from('tasks').insert({
@@ -16,6 +17,9 @@ class ToDoRepositories {
     return;
   }
 
+  ///Task state change request
+  ///[id] - task id
+  ///[isReady] - task readiness
   Future<void> markTodo(int id, bool isReady) async {
     final SupabaseClient client = Supabase.instance.client;
     await client.from('tasks').update({'isReady': isReady}).eq('id', id);
@@ -23,6 +27,11 @@ class ToDoRepositories {
     return;
   }
 
+  ///Request to update task values
+  ///[id] - task id
+  ///[title] - task title
+  ///[description] - task description
+  ///[finishDate] - task completion date
   Future<void> updateTodo(int id, String title, String description, DateTime finishDate) async {
     final SupabaseClient client = Supabase.instance.client;
     await client
@@ -32,6 +41,8 @@ class ToDoRepositories {
     return;
   }
 
+  ///Record deletion request
+  ///[id] - task id
   Future<void> deleteTodo(int id) async {
     final SupabaseClient client = Supabase.instance.client;
     await client.from('tasks').delete().eq('id', id);
@@ -39,10 +50,14 @@ class ToDoRepositories {
     return;
   }
 
+  ///Request to sort and filter tasks
+  ///[parameter] - sorting parameter
+  ///[hideDoneTasks] - filtering parameter
   Future<List<ToDo>> filteringTodoList(int parameter, bool hideDoneTasks) async {
     final SupabaseClient client = Supabase.instance.client;
     List<Map<String, dynamic>>? response;
     switch (parameter) {
+      //performance filtering
       case 1:
         response = await client
             .from('tasks')
@@ -50,6 +65,7 @@ class ToDoRepositories {
             .order('isReady', ascending: true)
             .order('finishDate', ascending: true);
         break;
+      //end date filtering
       case 2:
         response = await client
             .from('tasks')
@@ -58,6 +74,7 @@ class ToDoRepositories {
             .order('isReady', ascending: true)
             .order('created_at', ascending: false);
         break;
+      //creation date filtering filtering
       case 3:
         response = await client.from('tasks').select('*').order('created_at', ascending: false);
         break;

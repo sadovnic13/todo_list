@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+///data entry widget
+///[controller] - controller
+///[hintText] - hintText
+///[obscureText] - obscureText
+
 class DataTextField extends StatelessWidget {
   final controller;
   final String hintText;
@@ -14,7 +19,6 @@ class DataTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: TextField(

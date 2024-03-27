@@ -5,6 +5,7 @@ import 'package:table_calendar/table_calendar.dart';
 import '../../../repositories/repositories.dart';
 import '../bloc/edit_todo_page_bloc.dart';
 
+///Record change page
 class EditTodoPage extends StatefulWidget {
   const EditTodoPage({super.key});
 
@@ -12,6 +13,7 @@ class EditTodoPage extends StatefulWidget {
   State<EditTodoPage> createState() => _EditTodoPageState();
 }
 
+///Basic state of the record change screen
 class _EditTodoPageState extends State<EditTodoPage> {
   final EditTodoPageBloc editTodoPageBloc = EditTodoPageBloc(ToDoRepositories());
   final _formKey = GlobalKey<FormState>();
@@ -24,9 +26,15 @@ class _EditTodoPageState extends State<EditTodoPage> {
 
   ToDo? record;
 
+  ///parsing passed arguments
+  ///[_title.text] - title in the record
+  ///[_description.text] - description in the record,
+  ///[_focusedDay] - displayed day,
+  ///[_selectedDay] - selected day.
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
     final args = ModalRoute.of(context)?.settings.arguments;
     assert(args != null, "Route args error");
     record = args as ToDo;
@@ -42,6 +50,7 @@ class _EditTodoPageState extends State<EditTodoPage> {
     return BlocListener<EditTodoPageBloc, EditTodoPageState>(
       bloc: editTodoPageBloc,
       listener: (context, state) {
+        //Action on completion of loading
         if (state is EditTodoPageLoaded) {
           Navigator.pushNamedAndRemoveUntil(context, '/home_page_screen', (route) => false);
         }
@@ -119,6 +128,7 @@ class _EditTodoPageState extends State<EditTodoPage> {
     );
   }
 
+  /// Form for entering record values
   Widget _buildForm() {
     return Form(
       key: _formKey,
@@ -166,6 +176,7 @@ class _EditTodoPageState extends State<EditTodoPage> {
     );
   }
 
+  /// Calendar display form
   Widget _buildCalendar() {
     return TableCalendar(
       headerStyle: const HeaderStyle(formatButtonVisible: false, titleCentered: true),

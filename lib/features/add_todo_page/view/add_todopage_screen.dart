@@ -5,6 +5,7 @@ import 'package:table_calendar/table_calendar.dart';
 import '../../../repositories/repositories.dart';
 import '../bloc/add_todo_page_bloc.dart';
 
+///Add Record Page
 class AddTodoPageScreen extends StatefulWidget {
   const AddTodoPageScreen({super.key});
 
@@ -12,6 +13,7 @@ class AddTodoPageScreen extends StatefulWidget {
   State<AddTodoPageScreen> createState() => _AddTodoPageScreenState();
 }
 
+///Basic state of the Add Record screen
 class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
   final AddTodoPageBloc addTodoPageBloc = AddTodoPageBloc(ToDoRepositories());
   final _formKey = GlobalKey<FormState>();
@@ -69,7 +71,7 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
           ),
         ),
 
-        // Submit
+        // Submit button
         floatingActionButton: ElevatedButton(
           child: const Text(
             'Save',
@@ -89,6 +91,7 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
     );
   }
 
+  /// Form for entering record values
   Widget _buildForm() {
     return Form(
       key: _formKey,
@@ -136,6 +139,7 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
     );
   }
 
+  ///Form for displaying calendar
   Widget _buildCalendar() {
     return TableCalendar(
       headerStyle: const HeaderStyle(formatButtonVisible: false, titleCentered: true),

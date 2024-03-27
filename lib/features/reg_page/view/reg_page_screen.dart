@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/regpage_bloc.dart';
 import '../widgets/widgets.dart';
 
+///Registration screen
 class RegPageScreen extends StatefulWidget {
   const RegPageScreen({super.key});
 
@@ -15,9 +16,7 @@ class _RegPageScreenState extends State<RegPageScreen> {
   final RegpageBloc regpageBloc = RegpageBloc();
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Scaffold(
-      // backgroundColor: backgroundColor,
       body: BlocListener<RegpageBloc, RegpageState>(
         bloc: regpageBloc,
         listener: (context, state) {
@@ -44,13 +43,13 @@ class _RegPageScreenState extends State<RegPageScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                //body icon
                 Container(
                   height: 150,
                   width: 150,
                   margin: const EdgeInsets.only(top: 50, bottom: 10),
                   padding: const EdgeInsets.all(35),
                   decoration: BoxDecoration(
-                    // color: backgroundColor,
                     borderRadius: BorderRadius.circular(75),
                   ),
                   child: const Icon(
@@ -62,7 +61,7 @@ class _RegPageScreenState extends State<RegPageScreen> {
                   regpageBloc: regpageBloc,
                 ),
 
-                // not a member? register now
+                //authorization offer
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(

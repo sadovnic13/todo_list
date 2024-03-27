@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/regpage_bloc.dart';
 import 'widgets.dart';
 
+///Data entry form
+///[regpageBloc] - screen bloc
 class InputForm extends StatefulWidget {
   final RegpageBloc regpageBloc;
   const InputForm({super.key, required this.regpageBloc});
@@ -12,6 +14,7 @@ class InputForm extends StatefulWidget {
 }
 
 class _InputFormState extends State<InputForm> {
+  //controllers
   final TextEditingController _loginController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _repeatPasswordController = TextEditingController();
@@ -55,7 +58,7 @@ class _InputFormState extends State<InputForm> {
 
           const SizedBox(height: 25),
 
-          // sign in button
+          // sign up button
           SizedBox(
             height: 40,
             child: BlocBuilder<RegpageBloc, RegpageState>(
@@ -73,12 +76,10 @@ class _InputFormState extends State<InputForm> {
                     ),
                   );
                 }
-
                 return ElevatedButton(
                   child: const Text(
                     'Зарегистрироваться',
                     style: TextStyle(
-                      // color: backgroundColor,
                       fontWeight: FontWeight.bold,
                       // fontSize: fontSize20,
                     ),

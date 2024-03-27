@@ -4,6 +4,11 @@ import 'package:todo_list/features/home_page/bloc/homepage_bloc.dart';
 
 import '../../../repositories/repositories.dart';
 
+///Task card widget
+///[todo] - task instance
+///[homepageBloc] - page block
+///[parameter] - sorting parameter
+///[hideDoneTasks] - display parameter
 class ToDoRecord extends StatefulWidget {
   const ToDoRecord(
       {super.key,
@@ -35,6 +40,7 @@ class _ToDoRecordState extends State<ToDoRecord> {
 
     return Card(
       child: ListTile(
+        //task completion check box
         leading: IconButton(
           icon: isReady ? const Icon(Icons.check_box) : const Icon(Icons.check_box_outline_blank),
           onPressed: () async {
@@ -44,10 +50,12 @@ class _ToDoRecordState extends State<ToDoRecord> {
             });
           },
         ),
+        //title task
         title: Text(
           widget.todo.title,
           style: TextStyle(decoration: isReady ? TextDecoration.lineThrough : TextDecoration.none),
         ),
+        //description task
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -59,6 +67,7 @@ class _ToDoRecordState extends State<ToDoRecord> {
             Text('Ready date: ${DateFormat('dd.MM.yyyy').format(widget.todo.finishDate)}')
           ],
         ),
+        //context menu of task actions
         trailing: PopupMenuButton(
           onSelected: (value) {},
           itemBuilder: (context) {

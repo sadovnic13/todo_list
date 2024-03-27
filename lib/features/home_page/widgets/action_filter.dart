@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/features/home_page/bloc/homepage_bloc.dart';
 
+///Widget for creating filter and sorting menus
+///[homepageBloc] - page block
+////[parameter] - sorting parameter
+///[hideDoneTask] - method of displaying completed tasks
+///[onParameterChanged] - method of sorting parameter change
+///[onHideDoneTasksChanged] - method of changing the display of tasks
 class ActionFilter extends StatefulWidget {
   final HomepageBloc homepageBloc;
   final int parameter;
@@ -22,11 +28,10 @@ class ActionFilter extends StatefulWidget {
 }
 
 class _ActionFilterState extends State<ActionFilter> {
-  Icon icon = const Icon(Icons.filter_alt_outlined);
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
-      icon: icon,
+      icon: const Icon(Icons.filter_alt_outlined),
       onSelected: (value) {},
       itemBuilder: (context) {
         return <PopupMenuEntry<String>>[

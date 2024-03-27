@@ -6,6 +6,8 @@ import '../../../repositories/repositories.dart';
 part 'add_todo_page_event.dart';
 part 'add_todo_page_state.dart';
 
+/// Block allowing to add and respond to requests, on the screen of adding a record
+
 class AddTodoPageBloc extends Bloc<AddTodoPageEvent, AddTodoPageState> {
   AddTodoPageBloc(this.toDoRepositories) : super(AddTodoPageInitial()) {
     on<AddTodo>((event, emit) {
