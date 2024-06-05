@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'features/home_page/bloc/homepage_bloc.dart';
+import 'repositories/repositories.dart';
 import 'router/router.dart';
 
 class ToDoList extends StatelessWidget {
@@ -7,17 +11,20 @@ class ToDoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: routes,
-      theme: ThemeData(
-        fontFamily: 'Sora',
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        canvasColor: Colors.transparent,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3F37C9)),
-        useMaterial3: true,
+    return BlocProvider(
+      create: (context) => HomepageBloc(ToDoRepositories()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: routes,
+        theme: ThemeData(
+          fontFamily: 'Sora',
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          canvasColor: Colors.transparent,
+          colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 246, 255, 0)),
+          // useMaterial3: true,
+        ),
+        initialRoute: Supabase.instance.client.auth.currentSession != null ? '/home_page_screen' : '/log_page_screen',
       ),
-      initialRoute: '/log_page_screen',
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_list/features/home_page/bloc/homepage_bloc.dart';
 
@@ -10,16 +11,10 @@ import '../../../repositories/repositories.dart';
 ///[parameter] - sorting parameter
 ///[hideDoneTasks] - display parameter
 class ToDoRecord extends StatefulWidget {
-  const ToDoRecord(
-      {super.key,
-      required this.todo,
-      required this.homepageBloc,
-      required this.parameter,
-      required this.hideDoneTasks});
+  const ToDoRecord({super.key, required this.todo, required this.parameter, required this.hideDoneTasks});
   final ToDo todo;
   final int parameter;
   final bool hideDoneTasks;
-  final HomepageBloc homepageBloc;
 
   @override
   State<ToDoRecord> createState() => _ToDoRecordState();
@@ -37,6 +32,7 @@ class _ToDoRecordState extends State<ToDoRecord> {
   @override
   Widget build(BuildContext context) {
     final ToDoRepositories toDoRepositories = ToDoRepositories();
+    final homepageBloc = BlocProvider.of<HomepageBloc>(context);
 
     return Card(
       child: ListTile(
@@ -87,7 +83,7 @@ class _ToDoRecordState extends State<ToDoRecord> {
                   title: const Text('Delete'),
                   onTap: () {
                     Navigator.pop(context);
-                    widget.homepageBloc.add(DeleteToDoRecord(
+                    homepageBloc.add(DeleteToDoRecord(
                       id: widget.todo.id,
                       parameter: widget.parameter,
                       hideDoneTasks: widget.hideDoneTasks,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list/features/home_page/bloc/homepage_bloc.dart';
 
 ///Widget for creating filter and sorting menus
@@ -8,7 +9,6 @@ import 'package:todo_list/features/home_page/bloc/homepage_bloc.dart';
 ///[onParameterChanged] - method of sorting parameter change
 ///[onHideDoneTasksChanged] - method of changing the display of tasks
 class ActionFilter extends StatefulWidget {
-  final HomepageBloc homepageBloc;
   final int parameter;
   final bool hideDoneTasks;
   final ValueChanged<int> onParameterChanged;
@@ -16,7 +16,6 @@ class ActionFilter extends StatefulWidget {
 
   const ActionFilter({
     super.key,
-    required this.homepageBloc,
     required this.onParameterChanged,
     required this.parameter,
     required this.hideDoneTasks,
@@ -30,6 +29,8 @@ class ActionFilter extends StatefulWidget {
 class _ActionFilterState extends State<ActionFilter> {
   @override
   Widget build(BuildContext context) {
+    final homepageBloc = BlocProvider.of<HomepageBloc>(context);
+
     return PopupMenuButton(
       icon: const Icon(Icons.filter_alt_outlined),
       onSelected: (value) {},
@@ -47,7 +48,7 @@ class _ActionFilterState extends State<ActionFilter> {
             onTap: () {
               widget.onParameterChanged(1);
 
-              widget.homepageBloc.add(FilteringTodoList(parameter: 1, hideDoneTasks: widget.hideDoneTasks));
+              homepageBloc.add(FilteringTodoList(parameter: 1, hideDoneTasks: widget.hideDoneTasks));
             },
           ),
           //end date filtering
@@ -64,7 +65,7 @@ class _ActionFilterState extends State<ActionFilter> {
             onTap: () {
               widget.onParameterChanged(2);
 
-              widget.homepageBloc.add(FilteringTodoList(parameter: 2, hideDoneTasks: widget.hideDoneTasks));
+              homepageBloc.add(FilteringTodoList(parameter: 2, hideDoneTasks: widget.hideDoneTasks));
             },
           ),
           //creation date filtering filtering
@@ -81,7 +82,7 @@ class _ActionFilterState extends State<ActionFilter> {
             onTap: () {
               widget.onParameterChanged(3);
 
-              widget.homepageBloc.add(FilteringTodoList(parameter: 3, hideDoneTasks: widget.hideDoneTasks));
+              homepageBloc.add(FilteringTodoList(parameter: 3, hideDoneTasks: widget.hideDoneTasks));
             },
           ),
           const PopupMenuDivider(),
@@ -94,7 +95,7 @@ class _ActionFilterState extends State<ActionFilter> {
                 onChanged: (value) {
                   Navigator.pop(context);
                   widget.onHideDoneTasksChanged(value!);
-                  widget.homepageBloc.add(FilteringTodoList(parameter: widget.parameter, hideDoneTasks: value));
+                  homepageBloc.add(FilteringTodoList(parameter: widget.parameter, hideDoneTasks: value));
                 },
               ),
               title: const Text(
@@ -107,7 +108,7 @@ class _ActionFilterState extends State<ActionFilter> {
             onTap: () {
               bool newValue = !widget.hideDoneTasks;
               widget.onHideDoneTasksChanged(newValue);
-              widget.homepageBloc.add(FilteringTodoList(parameter: widget.parameter, hideDoneTasks: newValue));
+              homepageBloc.add(FilteringTodoList(parameter: widget.parameter, hideDoneTasks: newValue));
             },
           ),
         ];

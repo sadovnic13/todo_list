@@ -19,7 +19,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
   int parameter = 1;
   bool hideDoneTasks = false;
 
-  final HomepageBloc homepageBloc = HomepageBloc(ToDoRepositories());
+  // final HomepageBloc homepageBloc = HomepageBloc(ToDoRepositories());
 
   ///Method of changing the filter parameter [newParametr] - sorting type parameter
   void updateParameter(int newParameter) {
@@ -37,12 +37,14 @@ class _HomepageScreenState extends State<HomepageScreen> {
 
   @override
   void didChangeDependencies() {
-    homepageBloc.add(FilteringTodoList(parameter: parameter, hideDoneTasks: hideDoneTasks));
+    // homepageBloc.add(FilteringTodoList(parameter: parameter, hideDoneTasks: hideDoneTasks));
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
+    final homepageBloc = BlocProvider.of<HomepageBloc>(context);
+    homepageBloc.add(FilteringTodoList(parameter: parameter, hideDoneTasks: hideDoneTasks));
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -53,7 +55,6 @@ class _HomepageScreenState extends State<HomepageScreen> {
         title: const Text('Your ToDo list'),
         actions: [
           ActionFilter(
-            homepageBloc: homepageBloc,
             parameter: parameter,
             hideDoneTasks: hideDoneTasks,
             onParameterChanged: updateParameter,
@@ -79,11 +80,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                       itemCount: state.todoList.length,
                       itemBuilder: (context, index) {
                         return ToDoRecord(
-                          parameter: parameter,
-                          hideDoneTasks: hideDoneTasks,
-                          todo: state.todoList[index],
-                          homepageBloc: homepageBloc,
-                        );
+                            parameter: parameter, hideDoneTasks: hideDoneTasks, todo: state.todoList[index]);
                       },
                     ),
             );
