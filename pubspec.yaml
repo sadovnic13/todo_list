@@ -11,12 +11,14 @@ dependencies:
   equatable: ^2.0.5
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   flutter_bloc: ^8.1.4
-  intl: ^0.19.0
+  intl: ^0.18.1
   progress_state_button: ^1.0.4
   rounded_loading_button: ^2.1.0
   supabase_flutter: ^2.3.4
-  table_calendar: ^3.1.0
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:
@@ -25,3 +27,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+flutter_intl:
+  enabled: true

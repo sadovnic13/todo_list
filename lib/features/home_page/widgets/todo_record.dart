@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_list/features/home_page/bloc/homepage_bloc.dart';
+import 'package:todo_list/generated/l10n.dart';
 
 import '../../../repositories/repositories.dart';
 
@@ -60,7 +61,7 @@ class _ToDoRecordState extends State<ToDoRecord> {
               maxLines: 15,
               overflow: TextOverflow.ellipsis,
             ),
-            Text('Ready date: ${DateFormat('dd.MM.yyyy').format(widget.todo.finishDate)}')
+            Text(S.of(context).readyDateX(DateFormat('dd.MM.yyyy').format(widget.todo.finishDate)))
           ],
         ),
         //context menu of task actions
@@ -71,7 +72,7 @@ class _ToDoRecordState extends State<ToDoRecord> {
               PopupMenuItem(
                 child: ListTile(
                   leading: const Icon(Icons.edit),
-                  title: const Text('Edit'),
+                  title: Text(S.of(context).edit),
                   onTap: () {
                     Navigator.pushReplacementNamed(context, '/edit_todo_page_screen', arguments: widget.todo);
                   },
@@ -80,7 +81,7 @@ class _ToDoRecordState extends State<ToDoRecord> {
               PopupMenuItem(
                 child: ListTile(
                   leading: const Icon(Icons.delete),
-                  title: const Text('Delete'),
+                  title: Text(S.of(context).delete),
                   onTap: () {
                     Navigator.pop(context);
                     homepageBloc.add(DeleteToDoRecord(

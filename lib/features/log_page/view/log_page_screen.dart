@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list/generated/l10n.dart';
 
 import '../bloc/logpage_bloc.dart';
 import '../widgets/widgets.dart';
@@ -32,9 +33,9 @@ class _LogPageScreenState extends State<LogPageScreen> {
           if (state is LoginFailure) {
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
-              ..showSnackBar(const SnackBar(
-                content: Text("Ошибка!"),
-                duration: Duration(seconds: 3),
+              ..showSnackBar(SnackBar(
+                content: Text(S.of(context).error),
+                duration: const Duration(seconds: 3),
               ));
           }
         },
@@ -67,17 +68,17 @@ class _LogPageScreenState extends State<LogPageScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        'Еще нет аккаунта?',
+                      Text(
+                        S.of(context).noAccountYet,
                       ),
                       const SizedBox(width: 4),
                       GestureDetector(
                         onTap: () {
                           Navigator.pushReplacementNamed(context, '/reg_page_screen');
                         },
-                        child: const Text(
-                          'Регистрируйся',
-                          style: TextStyle(
+                        child: Text(
+                          S.of(context).signUp,
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
                         ),

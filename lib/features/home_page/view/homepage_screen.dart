@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list/generated/l10n.dart';
 
-import '../../../repositories/repositories.dart';
 import '../bloc/homepage_bloc.dart';
 import '../home_page.dart';
 
@@ -52,7 +52,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
           },
           child: const Icon(Icons.add)),
       appBar: AppBar(
-        title: const Text('Your ToDo list'),
+        title: Text(S.of(context).yourTodoList),
         actions: [
           ActionFilter(
             parameter: parameter,
@@ -72,8 +72,8 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 homepageBloc.add(FilteringTodoList(parameter: parameter, hideDoneTasks: hideDoneTasks));
               },
               child: state.todoList.isEmpty
-                  ? const Center(
-                      child: Text("You don't have plans"),
+                  ? Center(
+                      child: Text(S.of(context).youDontHavePlans),
                     )
                   : ListView.builder(
                       padding: const EdgeInsets.only(left: 10, right: 10, bottom: 100),

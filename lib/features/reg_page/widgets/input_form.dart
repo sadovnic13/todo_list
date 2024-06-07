@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list/generated/l10n.dart';
 
 import '../bloc/regpage_bloc.dart';
 import 'widgets.dart';
@@ -77,9 +78,9 @@ class _InputFormState extends State<InputForm> {
                   );
                 }
                 return ElevatedButton(
-                  child: const Text(
-                    'Зарегистрироваться',
-                    style: TextStyle(
+                  child: Text(
+                    S.of(context).signUp,
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       // fontSize: fontSize20,
                     ),

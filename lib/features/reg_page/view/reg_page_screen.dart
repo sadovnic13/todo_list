@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list/generated/l10n.dart';
 
 import '../bloc/regpage_bloc.dart';
 import '../widgets/widgets.dart';
@@ -32,9 +33,9 @@ class _RegPageScreenState extends State<RegPageScreen> {
           if (state is RegistrationFailure) {
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
-              ..showSnackBar(const SnackBar(
-                content: Text("Ошибка!"),
-                duration: Duration(seconds: 3),
+              ..showSnackBar(SnackBar(
+                content: Text(S.of(context).error),
+                duration: const Duration(seconds: 3),
               ));
           }
         },
@@ -67,17 +68,17 @@ class _RegPageScreenState extends State<RegPageScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        'Уже есть аккаунт?',
+                      Text(
+                        S.of(context).alreadyHaveAnAccount,
                       ),
                       const SizedBox(width: 4),
                       GestureDetector(
                         onTap: () {
                           Navigator.pushReplacementNamed(context, '/log_page_screen');
                         },
-                        child: const Text(
-                          'Авторизуйся',
-                          style: TextStyle(
+                        child: Text(
+                          S.of(context).logIn,
+                          style: const TextStyle(
                             // color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:todo_list/generated/l10n.dart';
 
 import '../../../repositories/repositories.dart';
 import '../bloc/edit_todo_page_bloc.dart';
@@ -98,18 +99,18 @@ class _EditTodoPageState extends State<EditTodoPage> {
           bloc: editTodoPageBloc,
           builder: (context, state) {
             if (state is EditTodoPageLoading) {
-              return const ElevatedButton(
+              return ElevatedButton(
                 onPressed: null,
                 child: Text(
-                  'Save',
-                  style: TextStyle(fontSize: 20),
+                  S.of(context).save,
+                  style: const TextStyle(fontSize: 20),
                 ),
               );
             }
             return ElevatedButton(
-              child: const Text(
-                'Save',
-                style: TextStyle(fontSize: 20),
+              child: Text(
+                S.of(context).save,
+                style: const TextStyle(fontSize: 20),
               ),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {

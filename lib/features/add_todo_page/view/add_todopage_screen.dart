@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:todo_list/generated/l10n.dart';
 
 import '../../../repositories/repositories.dart';
 import '../bloc/add_todo_page_bloc.dart';
@@ -73,9 +74,9 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
 
         // Submit button
         floatingActionButton: ElevatedButton(
-          child: const Text(
-            'Save',
-            style: TextStyle(fontSize: 20),
+          child: Text(
+            S.of(context).save,
+            style: const TextStyle(fontSize: 20),
           ),
           onPressed: () {
             if (_formKey.currentState!.validate()) {
@@ -101,13 +102,13 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
           // Title
           TextFormField(
             controller: _title,
-            decoration: const InputDecoration(
-              labelText: 'Title',
+            decoration: InputDecoration(
+              labelText: S.of(context).title,
               border: OutlineInputBorder(),
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter text';
+                return S.of(context).pleaseEnterText;
               }
               return null;
             },
@@ -120,16 +121,16 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
           TextFormField(
             controller: _description,
             keyboardType: TextInputType.name,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10),
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              labelText: 'Description',
+              labelText: S.of(context).description,
               border: OutlineInputBorder(),
             ),
             maxLines: 3,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter text';
+                return S.of(context).pleaseEnterText;
               }
               return null;
             },

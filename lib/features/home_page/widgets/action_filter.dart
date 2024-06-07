@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list/features/home_page/bloc/homepage_bloc.dart';
+import 'package:todo_list/generated/l10n.dart';
 
 ///Widget for creating filter and sorting menus
 ///[homepageBloc] - page block
@@ -41,7 +42,7 @@ class _ActionFilterState extends State<ActionFilter> {
             child: ListTile(
               leading: const Icon(Icons.playlist_add_check),
               title: Text(
-                'Performance',
+                S.of(context).performance,
                 style: TextStyle(fontWeight: widget.parameter == 1 ? FontWeight.w900 : FontWeight.w400),
               ),
             ),
@@ -56,7 +57,7 @@ class _ActionFilterState extends State<ActionFilter> {
             child: ListTile(
               leading: const Icon(Icons.date_range),
               title: Text(
-                'Finish date',
+                S.of(context).finishDate,
                 style: TextStyle(
                   fontWeight: widget.parameter == 2 ? FontWeight.w900 : FontWeight.w400,
                 ),
@@ -73,7 +74,7 @@ class _ActionFilterState extends State<ActionFilter> {
             child: ListTile(
               leading: const Icon(Icons.add_comment_rounded),
               title: Text(
-                'Сreation date',
+                S.of(context).creationDate,
                 style: TextStyle(
                   fontWeight: widget.parameter == 3 ? FontWeight.w900 : FontWeight.w400,
                 ),
@@ -98,9 +99,9 @@ class _ActionFilterState extends State<ActionFilter> {
                   homepageBloc.add(FilteringTodoList(parameter: widget.parameter, hideDoneTasks: value));
                 },
               ),
-              title: const Text(
-                'Hide done tasks',
-                style: TextStyle(
+              title: Text(
+                S.of(context).hideDoneTasks,
+                style: const TextStyle(
                   fontWeight: FontWeight.w400,
                 ),
               ),
