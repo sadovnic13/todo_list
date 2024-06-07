@@ -30,17 +30,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+        "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "error": MessageLookupByLibrary.simpleMessage("Error!"),
         "finishDate": MessageLookupByLibrary.simpleMessage("Finish date"),
         "hideDoneTasks":
             MessageLookupByLibrary.simpleMessage("Hide done tasks"),
         "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
         "noAccountYet": MessageLookupByLibrary.simpleMessage("No account yet?"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
         "performance": MessageLookupByLibrary.simpleMessage("Performance"),
         "pleaseEnterText":
             MessageLookupByLibrary.simpleMessage("Please enter text"),
         "readyDateX": m0,
         "reationDate": MessageLookupByLibrary.simpleMessage("Сreation date"),
+        "repeatPassword":
+            MessageLookupByLibrary.simpleMessage("Repeat password"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign in"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),

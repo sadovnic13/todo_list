@@ -104,7 +104,7 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
             controller: _title,
             decoration: InputDecoration(
               labelText: S.of(context).title,
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -122,10 +122,10 @@ class _AddTodoPageScreenState extends State<AddTodoPageScreen> {
             controller: _description,
             keyboardType: TextInputType.name,
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10),
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10),
               floatingLabelBehavior: FloatingLabelBehavior.always,
               labelText: S.of(context).description,
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
             ),
             maxLines: 3,
             validator: (value) {

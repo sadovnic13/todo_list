@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "delete": MessageLookupByLibrary.simpleMessage("حذف"),
         "description": MessageLookupByLibrary.simpleMessage("الوصف"),
         "edit": MessageLookupByLibrary.simpleMessage("تحرير"),
+        "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "error": MessageLookupByLibrary.simpleMessage("خطأ!"),
         "finishDate": MessageLookupByLibrary.simpleMessage("تاريخ الانتهاء"),
         "hideDoneTasks":
@@ -37,10 +38,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "logIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "noAccountYet":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب بعد؟"),
+        "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "performance": MessageLookupByLibrary.simpleMessage("الأداء"),
         "pleaseEnterText":
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال النص"),
         "readyDateX": m0,
+        "repeatPassword":
+            MessageLookupByLibrary.simpleMessage("أعد كلمة المرور"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signUp": MessageLookupByLibrary.simpleMessage("اشترك"),

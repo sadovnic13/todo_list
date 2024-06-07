@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "delete": MessageLookupByLibrary.simpleMessage("Eliminar"),
         "description": MessageLookupByLibrary.simpleMessage("Descripción"),
         "edit": MessageLookupByLibrary.simpleMessage("Editar"),
+        "email": MessageLookupByLibrary.simpleMessage("Correo electrónico"),
         "error": MessageLookupByLibrary.simpleMessage("¡Error!"),
         "finishDate":
             MessageLookupByLibrary.simpleMessage("Fecha de finalización"),
@@ -39,10 +40,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "logIn": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
         "noAccountYet":
             MessageLookupByLibrary.simpleMessage("¿Aún no tienes cuenta?"),
+        "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "performance": MessageLookupByLibrary.simpleMessage("Rendimiento"),
         "pleaseEnterText":
             MessageLookupByLibrary.simpleMessage("Por favor, ingresa texto"),
         "readyDateX": m0,
+        "repeatPassword":
+            MessageLookupByLibrary.simpleMessage("Repetir contraseña"),
         "save": MessageLookupByLibrary.simpleMessage("Guardar"),
         "signIn": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrarse"),

@@ -25,11 +25,11 @@ class ToDoList extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        locale: Locale('ar'),
+        locale: const Locale('ru'),
         theme: ThemeData(
           fontFamily: 'Sora',
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          canvasColor: Colors.transparent,
+          // canvasColor: Colors.transparent,
           colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 246, 255, 0)),
           // useMaterial3: true,
         ),

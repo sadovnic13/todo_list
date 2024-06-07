@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
         "description": MessageLookupByLibrary.simpleMessage("Описание"),
         "edit": MessageLookupByLibrary.simpleMessage("Изменить"),
+        "email": MessageLookupByLibrary.simpleMessage("Электронная почта"),
         "error": MessageLookupByLibrary.simpleMessage("Ошибка!"),
         "finishDate": MessageLookupByLibrary.simpleMessage("Срок выполнения"),
         "hideDoneTasks":
@@ -37,10 +38,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "logIn": MessageLookupByLibrary.simpleMessage("Авторизуйся"),
         "noAccountYet":
             MessageLookupByLibrary.simpleMessage("Еще нет аккаунта?"),
+        "password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "performance": MessageLookupByLibrary.simpleMessage("Завершенность"),
         "pleaseEnterText":
             MessageLookupByLibrary.simpleMessage("Пожалуйста введите текст"),
         "readyDateX": m0,
+        "repeatPassword":
+            MessageLookupByLibrary.simpleMessage("Повторите пароль"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти"),
         "signUp": MessageLookupByLibrary.simpleMessage("Регистрируйся"),

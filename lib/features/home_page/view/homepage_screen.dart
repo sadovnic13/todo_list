@@ -62,6 +62,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
           )
         ],
       ),
+      drawer: const Drawer(child: SideMenu()),
       body: BlocBuilder<HomepageBloc, HomepageState>(
         bloc: homepageBloc,
         builder: (context, state) {

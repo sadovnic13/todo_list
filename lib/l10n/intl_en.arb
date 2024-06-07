@@ -18,5 +18,8 @@
   "logIn": "Log in",
   "title": "Title",
   "pleaseEnterText": "Please enter text",
-  "description": "Description"
+  "description": "Description",
+  "email": "E-mail",
+  "password": "Password",
+  "repeatPassword": "Repeat password"
 }

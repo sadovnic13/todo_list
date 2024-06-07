@@ -36,7 +36,7 @@ class _InputFormState extends State<InputForm> {
           // username textfield
           DataTextField(
             controller: _loginController,
-            hintText: 'Почта',
+            hintText: S.of(context).email,
             obscureText: false,
           ),
           const SizedBox(height: 10),
@@ -44,7 +44,7 @@ class _InputFormState extends State<InputForm> {
           // password textfield
           DataTextField(
             controller: _passwordController,
-            hintText: 'Пароль',
+            hintText: S.of(context).password,
             obscureText: true,
           ),
 

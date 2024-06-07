@@ -17,5 +17,8 @@
   "logIn": "Авторизуйся",
   "title": "Заголовок",
   "pleaseEnterText": "Пожалуйста введите текст",
-  "description": "Описание"
+  "description": "Описание",
+  "email": "Электронная почта",
+  "password": "Пароль",
+  "repeatPassword": "Повторите пароль"
 }
