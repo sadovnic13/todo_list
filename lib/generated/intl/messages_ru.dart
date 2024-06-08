@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hideDoneTasks":
             MessageLookupByLibrary.simpleMessage("Скрыть выполненные"),
         "logIn": MessageLookupByLibrary.simpleMessage("Авторизуйся"),
+        "logOut": MessageLookupByLibrary.simpleMessage("Выйти"),
         "noAccountYet":
             MessageLookupByLibrary.simpleMessage("Еще нет аккаунта?"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
@@ -46,6 +47,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "repeatPassword":
             MessageLookupByLibrary.simpleMessage("Повторите пароль"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
+        "selectColor": MessageLookupByLibrary.simpleMessage("Выберите цвет"),
+        "selectLanguage": MessageLookupByLibrary.simpleMessage("Выберите язык"),
+        "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти"),
         "signUp": MessageLookupByLibrary.simpleMessage("Регистрируйся"),
         "title": MessageLookupByLibrary.simpleMessage("Заголовок"),

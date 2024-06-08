@@ -21,5 +21,9 @@
   "description": "Description",
   "email": "E-mail",
   "password": "Password",
-  "repeatPassword": "Repeat password"
+  "repeatPassword": "Repeat password",
+  "selectColor": "Select color",
+  "selectLanguage": "Select language",
+  "settings": "Settings",
+  "logOut": "Log out"
 }

@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hideDoneTasks":
             MessageLookupByLibrary.simpleMessage("إخفاء المهام المنجزة"),
         "logIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "noAccountYet":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب بعد؟"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
@@ -46,6 +47,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "repeatPassword":
             MessageLookupByLibrary.simpleMessage("أعد كلمة المرور"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
+        "selectColor": MessageLookupByLibrary.simpleMessage("اختر اللون"),
+        "selectLanguage": MessageLookupByLibrary.simpleMessage("اختر اللغة"),
+        "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signUp": MessageLookupByLibrary.simpleMessage("اشترك"),
         "title": MessageLookupByLibrary.simpleMessage("العنوان"),

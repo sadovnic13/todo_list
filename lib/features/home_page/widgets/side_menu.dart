@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:todo_list/generated/l10n.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({super.key});
@@ -26,13 +27,13 @@ class SideMenu extends StatelessWidget {
               InkWell(
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  child: const Row(
+                  child: Row(
                     children: [
-                      Icon(Icons.settings),
-                      SizedBox(width: 5),
+                      const Icon(Icons.settings),
+                      const SizedBox(width: 5),
                       Text(
-                        "Settings",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        S.of(context).settings,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -41,18 +42,13 @@ class SideMenu extends StatelessWidget {
                   Navigator.popAndPushNamed(context, '/settings_page_screen');
                 },
               )
-              // ElevatedButton(
-              //     style: ButtonStyle(),
-              //     onPressed: () {
-              //       Navigator.popAndPushNamed(context, '/settings_page_screen');
-              //     },
-              //     child: const Text("Settings")),
             ],
           ),
         ),
         TextButton(
           onPressed: () {
             Supabase.instance.client.auth.signOut();
+
             Navigator.pushNamedAndRemoveUntil(
               context,
               '/log_page_screen',
@@ -60,9 +56,8 @@ class SideMenu extends StatelessWidget {
             );
           },
           style: const ButtonStyle(overlayColor: MaterialStatePropertyAll(Colors.transparent)),
-          child: const Text(
-            'Выход',
-            // style: theme.textTheme.titleSmall,
+          child: Text(
+            S.of(context).logOut,
           ),
         )
       ],

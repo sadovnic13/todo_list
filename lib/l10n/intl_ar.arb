@@ -20,5 +20,9 @@
   "description": "الوصف",
   "email": "البريد الإلكتروني",
   "password": "كلمة المرور",
-  "repeatPassword": "أعد كلمة المرور"
+  "repeatPassword": "أعد كلمة المرور",
+  "selectColor": "اختر اللون",
+  "selectLanguage": "اختر اللغة",
+  "settings": "الإعدادات",
+  "logOut": "تسجيل الخروج"
 }

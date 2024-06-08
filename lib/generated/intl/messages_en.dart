@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hideDoneTasks":
             MessageLookupByLibrary.simpleMessage("Hide done tasks"),
         "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
+        "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
         "noAccountYet": MessageLookupByLibrary.simpleMessage("No account yet?"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "performance": MessageLookupByLibrary.simpleMessage("Performance"),
@@ -46,6 +47,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "repeatPassword":
             MessageLookupByLibrary.simpleMessage("Repeat password"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "selectColor": MessageLookupByLibrary.simpleMessage("Select color"),
+        "selectLanguage":
+            MessageLookupByLibrary.simpleMessage("Select language"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign in"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
         "title": MessageLookupByLibrary.simpleMessage("Title"),

@@ -20,5 +20,9 @@
   "description": "Описание",
   "email": "Электронная почта",
   "password": "Пароль",
-  "repeatPassword": "Повторите пароль"
+  "repeatPassword": "Повторите пароль",
+  "selectColor": "Выберите цвет",
+  "selectLanguage": "Выберите язык",
+  "settings": "Настройки",
+  "logOut": "Выйти"
 }

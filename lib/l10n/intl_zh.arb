@@ -20,5 +20,9 @@
   "description": "描述",
   "email": "电子邮件",
   "password": "密码",
-  "repeatPassword": "重复密码"
+  "repeatPassword": "重复密码",
+  "selectColor": "选择颜色",
+  "selectLanguage": "选择语言",
+  "settings": "设置",
+  "logOut": "登出"
 }

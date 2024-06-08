@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive/hive.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'features/home_page/bloc/homepage_bloc.dart';
@@ -8,11 +9,14 @@ import 'generated/l10n.dart';
 import 'repositories/repositories.dart';
 import 'router/router.dart';
 
+final settingsBox = Hive.box('settings');
+
 class ToDoList extends StatelessWidget {
   const ToDoList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    BoxDefaultParameterInit();
     return BlocProvider(
       create: (context) => HomepageBloc(ToDoRepositories()),
       child: MaterialApp(
@@ -25,16 +29,26 @@ class ToDoList extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        locale: const Locale('ru'),
+        locale: Locale(settingsBox.get('language')),
         theme: ThemeData(
           fontFamily: 'Sora',
           visualDensity: VisualDensity.adaptivePlatformDensity,
           // canvasColor: Colors.transparent,
-          colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 246, 255, 0)),
+          colorScheme: ColorScheme.fromSeed(seedColor: Color(int.parse('0xff${settingsBox.get("systemColor")}'))),
           // useMaterial3: true,
         ),
         initialRoute: Supabase.instance.client.auth.currentSession != null ? '/home_page_screen' : '/log_page_screen',
       ),
     );
+  }
+
+  void BoxDefaultParameterInit() {
+    if (settingsBox.get('language') == null) {
+      settingsBox.put('language', 'en');
+    }
+
+    if (settingsBox.get('systemColor') == null) {
+      settingsBox.put('systemColor', '65558F');
+    }
   }
 }

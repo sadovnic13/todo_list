@@ -1,4 +1,7 @@
+
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:todo_list/generated/l10n.dart';
 
 class SettingsPageScreen extends StatefulWidget {
   const SettingsPageScreen({super.key});
@@ -12,17 +15,16 @@ class SettingsStatePageScreen extends State<SettingsPageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Settings"),
+        title: Text(S.of(context).settings),
       ),
-      body: const Column(
-        children: [
-          Expanded(
-              child: Column(
-            children: [
-              LanguageSelector(),
-            ],
-          )),
-        ],
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            LanguageSelector(),
+            ColorSelector(),
+          ],
+        ),
       ),
     );
   }
@@ -35,24 +37,80 @@ class LanguageSelector extends StatefulWidget {
   State<LanguageSelector> createState() => _LanguageSelectorState();
 }
 
+Map<String, String> items = {
+  "English": "en",
+  "Русский": "ru",
+  "中文": "zh",
+  "العربية": "ar",
+  "Español": "es",
+};
+final settingsBox = Hive.box('settings');
+
 class _LanguageSelectorState extends State<LanguageSelector> {
-  List<String> items = ["English", "Русский", "中文", "العربية", "Español"];
-  String? selectedItem = "English";
+  String? selectedItem = items.keys.firstWhere((k) => items[k] == settingsBox.get("language"), orElse: () => "English");
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text("Select language"),
+        Text(
+          S.of(context).selectLanguage,
+          style: const TextStyle(fontSize: 16),
+        ),
         const SizedBox(width: 5),
         DropdownButton<String>(
           value: selectedItem,
-          items: items
+          items: items.keys
               .map((item) => DropdownMenuItem<String>(
                     value: item,
                     child: Text(item),
                   ))
               .toList(),
-          onChanged: (item) => setState(() => selectedItem = item),
+          onChanged: (item) {
+            setState(() => selectedItem = item);
+            settingsBox.put('language', items[item]);
+          },
+        ),
+      ],
+    );
+  }
+}
+
+List<String> colors = ["65558F", "304FFE", "0091EA", "00C853", "F4FF81", "FF9100"];
+
+class ColorSelector extends StatefulWidget {
+  const ColorSelector({super.key});
+
+  @override
+  State<ColorSelector> createState() => _ColorSelectorState();
+}
+
+class _ColorSelectorState extends State<ColorSelector> {
+  String? selectedItem = settingsBox.get("systemColor");
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(
+          S.of(context).selectColor,
+          style: const TextStyle(fontSize: 16),
+        ),
+        const SizedBox(width: 5),
+        DropdownButton<String>(
+          value: selectedItem,
+          items: colors
+              .map((color) => DropdownMenuItem<String>(
+                    value: color,
+                    child: Container(
+                      margin: const EdgeInsets.all(5),
+                      width: 50,
+                      color: Color(int.parse('0xff$color')),
+                    ),
+                  ))
+              .toList(),
+          onChanged: (item) {
+            setState(() => selectedItem = item);
+            settingsBox.put('systemColor', item);
+          },
         ),
       ],
     );

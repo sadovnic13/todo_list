@@ -20,5 +20,9 @@
   "description": "Descripción",
   "email": "Correo electrónico",
   "password": "Contraseña",
-  "repeatPassword": "Repetir contraseña"
+  "repeatPassword": "Repetir contraseña",
+  "selectColor": "Seleccionar color",
+  "selectLanguage": "Seleccionar idioma",
+  "settings": "Ajustes",
+  "logOut": "Cerrar sesión"
 }

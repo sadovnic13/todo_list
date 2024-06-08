@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo_list/todo_list_app.dart';
 
@@ -12,7 +14,19 @@ Future<void> connectToDatabase() async {
   );
 }
 
-void main() {
+Future<void> localStorage() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+}
+
+Future<void> initHive() async {
+  await Hive.initFlutter();
+  await Hive.openBox('settings');
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   connectToDatabase();
+  // localStorage();
+  await initHive();
   runApp(const ToDoList());
 }
